@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💫</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg,#1d2671,#c33764);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:450px;
+    text-align:center;
+}
+
+/* Start Screen */
+.start-screen{
+    animation:fadeIn 1s ease;
+}
+
+.start-screen h1{
+    font-size:2.2rem;
+    margin-bottom:15px;
+}
+
+.start-screen p{
+    opacity:0.9;
+    margin-bottom:30px;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:25px;
+    font-size:1rem;
+    cursor:pointer;
+    background:white;
+    color:#c33764;
+    font-weight:600;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* Card */
+.card{
+    display:none;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:30px 20px;
+    animation:slideUp 1s ease;
+}
+
+.card h2{
+    font-size:1.8rem;
+    margin-bottom:10px;
+}
+
+.card .emoji{
+    font-size:3rem;
+    margin:15px 0;
+}
+
+.message{
+    font-size:1rem;
+    line-height:1.6;
+    margin-bottom:20px;
+    opacity:0.95;
+}
+
+/* Surprise Section */
+.surprise{
+    display:none;
+    animation:fadeIn 1s ease;
+}
+
+.surprise h3{
+    font-size:1.4rem;
+    margin-bottom:15px;
+}
+
+.final{
+    font-size:1.1rem;
+    line-height:1.7;
+}
+
+/* Animations */
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes slideUp{
+    from{opacity:0; transform:translateY(40px)}
+    to{opacity:1; transform:translateY(0)}
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes float{
+    0%{transform:translateY(0); opacity:0}
+    10%{opacity:0.7}
+    100%{transform:translateY(-100vh); opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- START -->
+    <div class="start-screen" id="start">
+        <h1>Hey 👀</h1>
+        <p>I made something for you.<br>Not big. But real.</p>
+        <button onclick="startSurprise()">Tap to begin ✨</button>
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="card" id="card">
+        <h2>Happy Birthday 🎂</h2>
+        <div class="emoji">💫</div>
+
+        <p class="message">
+            Dear <b>ADITI</b>,<br><br>
+            I didn’t want to just say “happy birthday” like everyone else.
+            I wanted to <b>build</b> something for you —  
+            because you’re not ordinary to me.
+        </p>
+
+        <button onclick="showSurprise()">One more thing 👉</button>
+    </div>
+
+    <!-- SURPRISE -->
+    <div class="surprise" id="surprise">
+        <h3>From my heart ❤️</h3>
+        <p class="final">
+            You’re one of the few people who make life lighter,
+            laughs louder, and bad days easier.
+            <br><br>
+            I’m grateful for you — today, tomorrow, always.
+            <br><br>
+            Never forget how special you are ✨
+        </p>
+    </div>
+
+</div>
+
+<script>
+function startSurprise(){
+    document.getElementById("start").style.display="none";
+    document.getElementById("card").style.display="block";
+    createHearts();
+}
+
+function showSurprise(){
+    document.getElementById("card").style.display="none";
+    document.getElementById("surprise").style.display="block";
+}
+
+function createHearts(){
+    setInterval(()=>{
+        const heart=document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(15+Math.random()*20)+"px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),6000);
+    },400);
+}
+</script>
+
+</body>
+</html>
